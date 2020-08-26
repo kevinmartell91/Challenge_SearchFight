@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">anycpu</Platform>
+    <ProjectGuid>{DA9BA3D9-A377-476D-B325-36185B04D221}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Cignium.SearchFight</RootNamespace>
+    <AssemblyName>Cignium.SearchFight</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|anycpu' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExternalConsole>true</ExternalConsole>
+    <IntermediateOutputPath>obj\anycpu\Debug</IntermediateOutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|anycpu' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ExternalConsole>true</ExternalConsole>
+    <IntermediateOutputPath>obj\anycpu\Release</IntermediateOutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Cignium.SearchFight.Shared\Cignium.SearchFight.Shared.csproj">
+      <Project>{B891048E-7DE1-4AD9-9F19-2EFFA9831287}</Project>
+      <Name>Cignium.SearchFight.Shared</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cignium.SearchFight.Core\Cignium.SearchFight.Core.csproj">
+      <Project>{6BA5BC95-C57E-4A06-87EC-257D106C4E25}</Project>
+      <Name>Cignium.SearchFight.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Cignium.SearchFight.Services\Cignium.SearchFight.Services.csproj">
+      <Project>{AB95C5EB-EA9F-46E8-81B5-8D63703537AF}</Project>
+      <Name>Cignium.SearchFight.Services</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>
