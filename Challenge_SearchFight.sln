@@ -1,0 +1,52 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{4D6F48AF-5F0B-4A6E-AE59-1187B310A1E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cignium.SearchFight", "Cignium.SearchFight\Cignium.SearchFight\Cignium.SearchFight.csproj", "{DA9BA3D9-A377-476D-B325-36185B04D221}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{BBD0C416-EB16-4B39-8C56-AD518ED317FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cignium.SearchFight.Test", "Cignium.SearchFight.Test\Cignium.SearchFight.Test.csproj", "{80D4655A-F8D4-4B09-A2CE-7130A9A3D0D5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cignium.SearchFight.Core", "Cignium.SearchFight\Cignium.SearchFight.Core2\Cignium.SearchFight.Core.csproj", "{4DDDC3EE-8E05-432B-BA12-DAB24CDFB32E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cignium.SearchFight.Services", "Cignium.SearchFight\Cignium.SearchFight.Services2\Cignium.SearchFight.Services.csproj", "{2EF47A59-CB5A-4550-A539-D05B40524974}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cignium.SearchFight.Shared", "Cignium.SearchFight\Cignium.SearchFight.Shared2\Cignium.SearchFight.Shared.csproj", "{FF36BA42-0A85-4F0E-8FC1-E97B703AF8C5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|anycpu = Debug|anycpu
+		Release|anycpu = Release|anycpu
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DA9BA3D9-A377-476D-B325-36185B04D221}.Debug|anycpu.ActiveCfg = Debug|anycpu
+		{DA9BA3D9-A377-476D-B325-36185B04D221}.Debug|anycpu.Build.0 = Debug|anycpu
+		{DA9BA3D9-A377-476D-B325-36185B04D221}.Release|anycpu.ActiveCfg = Release|anycpu
+		{DA9BA3D9-A377-476D-B325-36185B04D221}.Release|anycpu.Build.0 = Release|anycpu
+		{80D4655A-F8D4-4B09-A2CE-7130A9A3D0D5}.Debug|anycpu.ActiveCfg = Debug|Any CPU
+		{80D4655A-F8D4-4B09-A2CE-7130A9A3D0D5}.Debug|anycpu.Build.0 = Debug|Any CPU
+		{80D4655A-F8D4-4B09-A2CE-7130A9A3D0D5}.Release|anycpu.ActiveCfg = Release|Any CPU
+		{80D4655A-F8D4-4B09-A2CE-7130A9A3D0D5}.Release|anycpu.Build.0 = Release|Any CPU
+		{4DDDC3EE-8E05-432B-BA12-DAB24CDFB32E}.Debug|anycpu.ActiveCfg = Debug|Any CPU
+		{4DDDC3EE-8E05-432B-BA12-DAB24CDFB32E}.Debug|anycpu.Build.0 = Debug|Any CPU
+		{4DDDC3EE-8E05-432B-BA12-DAB24CDFB32E}.Release|anycpu.ActiveCfg = Release|Any CPU
+		{4DDDC3EE-8E05-432B-BA12-DAB24CDFB32E}.Release|anycpu.Build.0 = Release|Any CPU
+		{2EF47A59-CB5A-4550-A539-D05B40524974}.Debug|anycpu.ActiveCfg = Debug|Any CPU
+		{2EF47A59-CB5A-4550-A539-D05B40524974}.Debug|anycpu.Build.0 = Debug|Any CPU
+		{2EF47A59-CB5A-4550-A539-D05B40524974}.Release|anycpu.ActiveCfg = Release|Any CPU
+		{2EF47A59-CB5A-4550-A539-D05B40524974}.Release|anycpu.Build.0 = Release|Any CPU
+		{FF36BA42-0A85-4F0E-8FC1-E97B703AF8C5}.Debug|anycpu.ActiveCfg = Debug|Any CPU
+		{FF36BA42-0A85-4F0E-8FC1-E97B703AF8C5}.Debug|anycpu.Build.0 = Debug|Any CPU
+		{FF36BA42-0A85-4F0E-8FC1-E97B703AF8C5}.Release|anycpu.ActiveCfg = Release|Any CPU
+		{FF36BA42-0A85-4F0E-8FC1-E97B703AF8C5}.Release|anycpu.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{DA9BA3D9-A377-476D-B325-36185B04D221} = {4D6F48AF-5F0B-4A6E-AE59-1187B310A1E5}
+		{80D4655A-F8D4-4B09-A2CE-7130A9A3D0D5} = {BBD0C416-EB16-4B39-8C56-AD518ED317FC}
+		{4DDDC3EE-8E05-432B-BA12-DAB24CDFB32E} = {4D6F48AF-5F0B-4A6E-AE59-1187B310A1E5}
+		{2EF47A59-CB5A-4550-A539-D05B40524974} = {4D6F48AF-5F0B-4A6E-AE59-1187B310A1E5}
+		{FF36BA42-0A85-4F0E-8FC1-E97B703AF8C5} = {4D6F48AF-5F0B-4A6E-AE59-1187B310A1E5}
+	EndGlobalSection
+EndGlobal
