@@ -3,7 +3,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Cignium.SearchFight.Core;
 
-
 namespace Cignium.SearchFight
 {
     class MainClass
@@ -12,9 +11,11 @@ namespace Cignium.SearchFight
         {
             if (args.Length == 0)
             {
-                Console.WriteLine("In order to start SearchFight, write some terms in the command line");
+                Console.WriteLine("In order to start SearchFight, " +
+                    "write some terms in the command line.");
                 return;
             }
+
             MainFireSearchFightAsync(args).GetAwaiter().GetResult();
         }
 

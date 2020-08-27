@@ -14,11 +14,12 @@ namespace Cignium.SearchFight.Core.Implementation
 
         public SearchManager()
         {
-            _searchEngines = retriveSearchEngines();
+            _searchEngines = RetriveSearchEngines();
         }
 
-        private static IList<ISearchEngine> retriveSearchEngines()
+        private static IList<ISearchEngine> RetriveSearchEngines()
         {
+
             IList<ISearchEngine> assemblies = AppDomain.CurrentDomain.GetAssemblies()
                 ?.Where(assembly => assembly.FullName.StartsWith("Cignium.SearchFight"))
                 .SelectMany(assembly => assembly.GetTypes())
@@ -26,11 +27,12 @@ namespace Cignium.SearchFight.Core.Implementation
                 .Select(type => Activator.CreateInstance(type) as ISearchEngine).ToList();
 
             return assemblies;
+
         }
 
         public async Task<ContainerSearch> GetSearchEngineResults(IList<string> terms)
         {
-            if (terms.Equals(null) || terms.Count().Equals(0))
+            if (terms == null || terms.Count().Equals(0))
                 throw new ArgumentException("The input arguments are invalid", nameof(terms));
 
             ContainerSearch containerSearch = new ContainerSearch();
@@ -38,18 +40,24 @@ namespace Cignium.SearchFight.Core.Implementation
             foreach( string term in terms)
             {
                 List<Search> searchResutls = new List<Search>();
+
                 foreach(ISearchEngine engine in _searchEngines)
                 {
-                    Search search = new Search();
-                    search.Term = term;
-                    search.EngineName = engine.Name;
-                    search.TotalQueryResults = await engine.GetTotalResultsAsync(term);
+                    Search search = new Search
+                    {
+                        Term = term,
+                        EngineName = engine.Name,
+                        TotalQueryResults = await engine.GetTotalResultsAsync(term)
+                    };
 
                     searchResutls.Add(search);
                 }
+
                 containerSearch.termDictionary.Add(term, searchResutls);
             }
+
             return containerSearch;
+
         }
     }
 }

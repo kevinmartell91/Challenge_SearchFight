@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cignium.SearchFight", "Cign
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cignium.SearchFight.Core", "Cignium.SearchFight\Cignium.SearchFight.Core\Cignium.SearchFight.Core.csproj", "{6BA5BC95-C57E-4A06-87EC-257D106C4E25}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{BBD0C416-EB16-4B39-8C56-AD518ED317FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cignium.SearchFight.Test", "Cignium.SearchFight.Test\Cignium.SearchFight.Test.csproj", "{80D4655A-F8D4-4B09-A2CE-7130A9A3D0D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|anycpu = Debug|anycpu
@@ -33,11 +37,16 @@ Global
 		{6BA5BC95-C57E-4A06-87EC-257D106C4E25}.Debug|anycpu.Build.0 = Debug|anycpu
 		{6BA5BC95-C57E-4A06-87EC-257D106C4E25}.Release|anycpu.ActiveCfg = Release|anycpu
 		{6BA5BC95-C57E-4A06-87EC-257D106C4E25}.Release|anycpu.Build.0 = Release|anycpu
+		{80D4655A-F8D4-4B09-A2CE-7130A9A3D0D5}.Debug|anycpu.ActiveCfg = Debug|Any CPU
+		{80D4655A-F8D4-4B09-A2CE-7130A9A3D0D5}.Debug|anycpu.Build.0 = Debug|Any CPU
+		{80D4655A-F8D4-4B09-A2CE-7130A9A3D0D5}.Release|anycpu.ActiveCfg = Release|Any CPU
+		{80D4655A-F8D4-4B09-A2CE-7130A9A3D0D5}.Release|anycpu.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AB95C5EB-EA9F-46E8-81B5-8D63703537AF} = {4D6F48AF-5F0B-4A6E-AE59-1187B310A1E5}
 		{B891048E-7DE1-4AD9-9F19-2EFFA9831287} = {4D6F48AF-5F0B-4A6E-AE59-1187B310A1E5}
 		{DA9BA3D9-A377-476D-B325-36185B04D221} = {4D6F48AF-5F0B-4A6E-AE59-1187B310A1E5}
 		{6BA5BC95-C57E-4A06-87EC-257D106C4E25} = {4D6F48AF-5F0B-4A6E-AE59-1187B310A1E5}
+		{80D4655A-F8D4-4B09-A2CE-7130A9A3D0D5} = {BBD0C416-EB16-4B39-8C56-AD518ED317FC}
 	EndGlobalSection
 EndGlobal

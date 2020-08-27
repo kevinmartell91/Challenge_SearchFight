@@ -22,7 +22,6 @@ namespace Cignium.SearchFight.Core
             ReportManager = new ReportManager();
 
             Reports = new List<string>();
-
         }
 
         public static async Task StartAsync(IList<string> terms)
@@ -42,7 +41,6 @@ namespace Cignium.SearchFight.Core
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello kevin!");
         }
     }
 }

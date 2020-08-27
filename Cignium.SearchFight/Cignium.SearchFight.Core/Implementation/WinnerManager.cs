@@ -12,104 +12,134 @@ namespace Cignium.SearchFight.Core.Implementation
         public List<EngineTermWinner> GetEngineWinners(ContainerSearch containerSearch)
         {
 
-            var termsDictionary = containerSearch.termDictionary;
-            if (containerSearch == null || termsDictionary.Count == 0)
-                throw new Exception();
 
-            List<Search> tempWinners = GetTempWinners(containerSearch);
+            if (containerSearch == null || containerSearch.termDictionary.Count == 0)
+                throw new ArgumentException("Invalid arguments", nameof(containerSearch));
 
-            return GetWinners(tempWinners);
+            List<Search> searchWinners = GetSearchWinners(containerSearch);
+
+            return ParseToEngineWinners(searchWinners);
+
         }
 
         public EngineTermWinner GetTotalWinner(ContainerSearch containerSearch)
         {
 
-            var termsDictionary = containerSearch.termDictionary;
-            if (containerSearch == null || termsDictionary.Count == 0)
-                throw new Exception();
+            if (containerSearch == null || containerSearch.termDictionary.Count == 0)
+                throw new ArgumentException("Invalid arguments", nameof(containerSearch));
 
-            List<Search> winners = GetTempWinners(containerSearch);
+            // get the winner list
+            List<Search> winners = GetSearchWinners(containerSearch);
+
+            // set the first winner as a Total Winner
             Search tempTotalWinner = winners.First();
-            EngineTermWinner engineTermWinner = new EngineTermWinner();
 
-            for( int i = 0; i> winners.Count; i++)
+            // start iterating at position 1, for position 0 is the
+            // tempTotalWinner
+            for ( int i = 1; i < winners.Count; i++)
             {
                 long winnerTotalResults = winners.ElementAt(i).TotalQueryResults;
-                if ( winnerTotalResults > tempTotalWinner.TotalQueryResults)
+                long tempWinnerTotalResults = tempTotalWinner.TotalQueryResults;
+
+                // update total winner
+                if ( winnerTotalResults > tempWinnerTotalResults)
                     tempTotalWinner = winners.ElementAt(i);
+
             }
 
-            engineTermWinner.EngineName = tempTotalWinner.EngineName;
-            engineTermWinner.Term = tempTotalWinner.Term;
+            // set the engine term winner with the data of the total Winner
+            EngineTermWinner engineTermWinner = new EngineTermWinner
+            {
+                EngineName = tempTotalWinner.EngineName,
+                Term = tempTotalWinner.Term
+            };
 
             return engineTermWinner;
+
         }
 
-        private List<EngineTermWinner> GetWinners(List<Search> SearchWinners)
+        private List<EngineTermWinner> ParseToEngineWinners(List<Search> searchWinners)
         {
+            if ( searchWinners == null || searchWinners.Count == 0)
+                throw new ArgumentException("Invalid arguments", nameof(searchWinners));
+
             List<EngineTermWinner> engineTermWinners = new List<EngineTermWinner>();
-            EngineTermWinner engineTermWinner = new EngineTermWinner();
 
-            foreach (Search searchWinner in SearchWinners)
+            foreach (Search searchWinner in searchWinners)
             {
-                engineTermWinner.EngineName = searchWinner.EngineName;
-                engineTermWinner.Term = searchWinner.Term;
+
+                EngineTermWinner engineTermWinner = new EngineTermWinner
+                {
+                    EngineName = searchWinner.EngineName,
+                    Term = searchWinner.Term
+                };
+
                 engineTermWinners.Add(engineTermWinner);
+
             }
+
             return engineTermWinners;
+
         }
 
-
-        private List<Search> GetTempWinners( ContainerSearch containerSearch)
+        private List<Search> GetSearchWinners(ContainerSearch containerSearch)
         {
+
+            if (containerSearch == null || containerSearch.termDictionary.Count == 0)
+                throw new ArgumentException("Invalid arguments", nameof(containerSearch));
+
             var termsDictionary = containerSearch.termDictionary;
-            if (containerSearch == null || termsDictionary.Count == 0)
-                throw new Exception();
 
-            List<Search> tempWinners = SetFirstElemAsWinner(termsDictionary);
+            // set the first dictionary element as a temporary search winners
+            List<Search> searchWinners = SetFirstElemAsWinner(termsDictionary);
 
-            // tempWinners is updated while iterating through the dictionary
+            // searchWinners is updated while iterating through the dictionary elements
             for (int i = 1; i < termsDictionary.Count; i++)
             {
                 string keyTerm = termsDictionary.ElementAt(i).Key;
+
                 List<Search> searchEngineList = termsDictionary.ElementAt(i).Value;
 
                 for (int j = 0; j < searchEngineList.Count; j++)
                 {
-                    long tempMaxResult = tempWinners.ElementAt(j).TotalQueryResults;
+                    long searchMaxResult = searchWinners.ElementAt(j).TotalQueryResults;
                     long totalResults = searchEngineList.ElementAt(j).TotalQueryResults;
-                    if (totalResults > tempMaxResult)
+
+                    if (totalResults > searchMaxResult)
                     {
-                        tempWinners.ElementAt(j).TotalQueryResults = totalResults;
-                        tempWinners.ElementAt(j).Term = keyTerm;
+                        searchWinners.ElementAt(j).TotalQueryResults = totalResults;
+                        searchWinners.ElementAt(j).Term = keyTerm;
                     }
                 }
             }
-            return tempWinners;
+
+            // return the search winners list 
+            return searchWinners;
+
         }
 
- 
-        /// <summary>
-        /// Setting the first element of the dictionary as winner
-        /// </summary>
-        /// <param name="termsDictionary"></param>
-        /// <returns> A list of all the search engines as a winners</returns>
         private List<Search> SetFirstElemAsWinner(Dictionary<string, List<Search>> termsDictionary)
         {
-            List<Search> searchWinnerListDefault = new List<Search>();
+            if (termsDictionary == null || termsDictionary.Count == 0)
+                throw new ArgumentException("Invalid arguments", nameof(termsDictionary));
 
-            Search searchDefault = new Search();
+            List<Search> searchWinnerListDefault = new List<Search>();
 
             // iterate the Serach List of first element of the dictionary
             foreach (Search search in termsDictionary.First().Value)
             {
-                searchDefault.EngineName = search.EngineName;
-                searchDefault.Term = search.Term;
-                searchDefault.TotalQueryResults = search.TotalQueryResults;
+                Search searchDefault = new Search
+                {
+                    EngineName = search.EngineName,
+                    Term = search.Term,
+                    TotalQueryResults = search.TotalQueryResults
+                };
 
                 searchWinnerListDefault.Add(searchDefault);
             }
+
             return searchWinnerListDefault;
+
         }
     }
 }

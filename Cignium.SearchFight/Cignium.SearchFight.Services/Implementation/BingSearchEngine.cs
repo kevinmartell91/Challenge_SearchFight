@@ -14,28 +14,22 @@ namespace Cignium.SearchFight.Services.Implementation
         public string Name => "Bing";
         private HttpClient _client { get; }
 
-
         public BingSearchEngine()
         {
             _client = new HttpClient();
-
+            setRequestHeaders();
         }
 
         public async Task<long> GetTotalResultsAsync(string searchQuery)
         {
-
             if (string.IsNullOrEmpty(searchQuery))
                 throw new ArgumentException("The term cannot be null or empty",
                     nameof(searchQuery));
 
-            setRequestHeaders();
-
             string customSearchRequestUri =
                 BingConfig.BaseUri.Replace("{Query}", searchQuery);
 
-
-            var response =
-                await _client.GetAsync(customSearchRequestUri);
+            var response = await _client.GetAsync(customSearchRequestUri);
 
             using ( response )
             {

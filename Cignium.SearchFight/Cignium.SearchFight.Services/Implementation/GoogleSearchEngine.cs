@@ -14,17 +14,16 @@ namespace Cignium.SearchFight.Services.Implementation
         public string Name => "Google";
         private HttpClient _client { get; }
 
-
         public GoogleSearchEngine ()
         {
             _client = new HttpClient();
         }
-            
 
         public async Task<long> GetTotalResultsAsync(string query)
         {
             if ( string.IsNullOrEmpty(query) )
-                throw new ArgumentException("The term cannot be null or empty", nameof(query));
+                throw new ArgumentException("The term cannot be null or empty",
+                    nameof(query));
 
             string customSearchRequestUri = GoogleConfig.BaseUrl
                     .Replace("{ApiKey}", GoogleConfig.ApiKey)
@@ -35,10 +34,15 @@ namespace Cignium.SearchFight.Services.Implementation
 
             using (response)
             {
-                GoogleResponse results = JsonHelper.Deserialize<GoogleResponse>(await response.Content.ReadAsStringAsync());
+                if (!response.IsSuccessStatusCode)
+                    throw new Exception("Request not processed.");
+
+                GoogleResponse results = JsonHelper
+                    .Deserialize<GoogleResponse>
+                        (await response.Content.ReadAsStringAsync());
+
                 return long.Parse(results.searchInformation.totalResults);
             }
-            
         }
     }
 }

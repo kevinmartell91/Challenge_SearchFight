@@ -12,31 +12,37 @@ namespace Cignium.SearchFight.Core.Implementation
         public const string TOTAL_WINNER_MESSAGE = "Total winner: ";
         public const string WINNER_MESSAGE = " winner: ";
 
-        public ReportManager()
-        {
-        }
-
         public IList<string> PrintSearchResults(ContainerSearch containerSearch)
         {
-            var termsDictionary = containerSearch.termDictionary;
-            if (containerSearch == null || termsDictionary.Count == 0)
+
+            if (containerSearch == null || containerSearch.termDictionary.Count == 0)
                 throw new ArgumentException("The parameter is invalid", nameof(containerSearch));
 
-            List<string> results = new List<string>();
-            StringBuilder tempResult = new StringBuilder();
+            var termsDictionary = containerSearch.termDictionary;
+
+            List<string> searchResults = new List<string>();
+
+            StringBuilder resultBuilder = new StringBuilder();
 
             foreach( var termDict in termsDictionary)
             {
-                tempResult.Append(termDict.Key);
+                resultBuilder.Append(termDict.Key);
+                resultBuilder.Append(": ");
 
                 foreach( var search in termDict.Value)
                 {
-                    tempResult.Append(": " + search.EngineName + ": " + search.TotalQueryResults + " ");
+                    resultBuilder.Append(search.EngineName);
+                    resultBuilder.Append(": ");
+                    resultBuilder.Append(search.TotalQueryResults);
+                    resultBuilder.Append(" ");
                 }
-                results.Add(tempResult.ToString());
-                tempResult.Clear();
+
+                searchResults.Add(resultBuilder.ToString());
+
+                resultBuilder.Clear();
             }
-            return results;
+
+            return searchResults;
             
         }
 
@@ -45,17 +51,22 @@ namespace Cignium.SearchFight.Core.Implementation
             if (engineTermWinners == null || engineTermWinners.Count == 0)
                 throw new ArgumentException("The parameter is invalid", nameof(engineTermWinners));
 
-            List<string> results = new List<string>();
-            StringBuilder tempResult = new StringBuilder();
+            List<string> winners = new List<string>();
+
+            StringBuilder winnerBuilder = new StringBuilder();
 
             foreach( EngineTermWinner winner in engineTermWinners)
             {
-                tempResult.Append(winner.EngineName + WINNER_MESSAGE + winner.Term);
-                results.Add(tempResult.ToString());
-                tempResult.Clear();
+                winnerBuilder.Append(winner.EngineName);
+                winnerBuilder.Append(WINNER_MESSAGE);
+                winnerBuilder.Append(winner.Term);
+
+                winners.Add(winnerBuilder.ToString());
+
+                winnerBuilder.Clear();
             }
 
-            return results;
+            return winners;
 
         }
 
@@ -69,6 +80,7 @@ namespace Cignium.SearchFight.Core.Implementation
             totalWinnerBuilder.Append(totalWinner.Term);
 
             return totalWinnerBuilder.ToString();
+
         }
 
     }
